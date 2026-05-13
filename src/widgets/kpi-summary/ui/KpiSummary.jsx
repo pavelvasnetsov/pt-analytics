@@ -16,8 +16,8 @@ export function KpiSummary({ kpis }) {
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
       {KPI_ITEMS.map(([label, key, type]) => (
         <Card key={key}>
-          <p className="text-xs font-medium uppercase tracking-normal text-slate-500">{label}</p>
-          <p className="mt-2 text-2xl font-semibold text-slate-950">
+          <p className="text-xs font-medium uppercase tracking-normal text-slate-500 dark:text-slate-400">{label}</p>
+          <p className="mt-2 text-2xl font-semibold text-slate-950 dark:text-slate-50">
             {type === 'percent'
               ? formatPercent(kpis[key], 1)
               : type === 'duration'

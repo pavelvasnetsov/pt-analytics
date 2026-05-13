@@ -17,7 +17,7 @@ export function getListenerRowState(listener, now = new Date()) {
     isClosedByStatus(listener.programStatus);
 
   if (isClosed) {
-    return { type: 'closed', label: 'Закрыт', rowClassName: 'bg-slate-100 text-slate-600' };
+    return { type: 'closed', label: 'Закрыт', rowClassName: 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300' };
   }
 
   const closeTime = listener.accessCloseDate instanceof Date ? listener.accessCloseDate.getTime() : null;
@@ -28,8 +28,8 @@ export function getListenerRowState(listener, now = new Date()) {
     closeTime - now.getTime() < RISK_WINDOW_MS;
 
   if (isRisk) {
-    return { type: 'risk', label: 'Риск', rowClassName: 'bg-red-50' };
+    return { type: 'risk', label: 'Риск', rowClassName: 'bg-red-50 dark:bg-red-950/50 dark:text-slate-100' };
   }
 
-  return { type: 'normal', label: 'Норма', rowClassName: 'bg-white' };
+  return { type: 'normal', label: 'Норма', rowClassName: 'bg-white dark:bg-slate-900 dark:text-slate-100' };
 }

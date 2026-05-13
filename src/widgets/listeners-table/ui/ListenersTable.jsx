@@ -45,11 +45,11 @@ export function ListenersTable({ listeners }) {
   return (
     <div
       ref={containerRef}
-      className="table-scroll max-h-[70vh] overflow-auto rounded-lg border border-slate-200 bg-white"
+      className="table-scroll max-h-[70vh] overflow-auto rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
       onScroll={onScroll}
     >
       <table className="table-fixed border-collapse text-left text-sm" style={{ width: tableWidth }}>
-        <thead className="bg-slate-50 text-xs uppercase tracking-normal text-slate-600">
+        <thead className="bg-slate-50 text-xs uppercase tracking-normal text-slate-600 dark:bg-slate-800 dark:text-slate-300">
           <tr>
             {columns.map((column) => (
               <ResizableHeaderCell
@@ -57,7 +57,7 @@ export function ListenersTable({ listeners }) {
                 column={column}
                 width={getWidth(column)}
                 onResizeStart={startResize}
-                className={`sticky top-0 z-20 bg-slate-50 ${column.align === 'right' ? 'text-right' : ''}`}
+                className={`sticky top-0 z-20 bg-slate-50 dark:bg-slate-800 ${column.align === 'right' ? 'text-right' : ''}`}
                 title={column.label}
               >
                 {column.label}
@@ -65,7 +65,7 @@ export function ListenersTable({ listeners }) {
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-200">
+        <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
           {paddingTop > 0 ? (
             <tr aria-hidden="true">
               <td colSpan={columns.length} style={{ height: paddingTop, padding: 0 }} />
@@ -75,13 +75,13 @@ export function ListenersTable({ listeners }) {
             const state = getListenerRowState(listener);
             return (
               <tr key={listener.rowId} className={state.rowClassName}>
-                <DataCell column={columns[0]} width={getWidth(columns[0])} className="font-medium text-slate-900">
+                <DataCell column={columns[0]} width={getWidth(columns[0])} className="font-medium text-slate-900 dark:text-slate-50">
                   {listener.fullName}
                 </DataCell>
-                <DataCell column={columns[1]} width={getWidth(columns[1])} className="text-slate-700">
+                <DataCell column={columns[1]} width={getWidth(columns[1])} className="text-slate-700 dark:text-slate-300">
                   {listener.email}
                 </DataCell>
-                <DataCell column={columns[2]} width={getWidth(columns[2])} className="text-slate-700">
+                <DataCell column={columns[2]} width={getWidth(columns[2])} className="text-slate-700 dark:text-slate-300">
                   {listener.stream}
                 </DataCell>
                 <DataCell column={columns[3]} width={getWidth(columns[3])} className="text-right font-medium">

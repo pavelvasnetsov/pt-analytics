@@ -13,7 +13,7 @@ function StickyCell({ column, width, left, children, header = false, className =
   const Tag = header ? 'th' : 'td';
   return (
     <Tag
-      className={`sticky z-10 overflow-hidden text-ellipsis whitespace-nowrap px-4 py-3 ${header ? 'z-20 bg-slate-50' : 'bg-white'} ${className}`}
+      className={`sticky z-10 overflow-hidden text-ellipsis whitespace-nowrap px-4 py-3 ${header ? 'z-20 bg-slate-50 dark:bg-slate-800' : 'bg-white dark:bg-slate-900'} ${className}`}
       style={{ left, width, minWidth: width, maxWidth: width }}
       scope={header ? 'col' : undefined}
     >
@@ -26,13 +26,13 @@ function ProgressCell({ value, width, muted = false }) {
   const numericValue = Number.isFinite(value) ? value : null;
   return (
     <td
-      className={`px-3 py-3 text-center ${muted ? 'bg-slate-100 font-semibold' : ''}`}
+      className={`px-3 py-3 text-center ${muted ? 'bg-slate-100 font-semibold dark:bg-slate-800' : ''}`}
       style={{ width, minWidth: width, maxWidth: width }}
     >
       {numericValue === null ? (
         '—'
       ) : (
-        <span className="inline-flex min-w-14 justify-center rounded border border-slate-200 bg-white px-2 py-1 text-xs font-semibold text-slate-800">
+        <span className="inline-flex min-w-14 justify-center rounded border border-slate-200 bg-white px-2 py-1 text-xs font-semibold text-slate-800 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100">
           {formatPercent(numericValue, Number.isInteger(numericValue) ? 0 : 1)}
         </span>
       )}
@@ -65,7 +65,7 @@ export function MaterialsMatrixTable({ materials, matrix }) {
 
   if (!materials.length) {
     return (
-      <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
+      <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900 dark:border-amber-900 dark:bg-amber-950 dark:text-amber-100">
         В файле не найдены колонки материалов для построения матрицы.
       </div>
     );
@@ -74,11 +74,11 @@ export function MaterialsMatrixTable({ materials, matrix }) {
   return (
     <div
       ref={containerRef}
-      className="table-scroll max-h-[72vh] overflow-auto rounded-lg border border-slate-200 bg-white"
+      className="table-scroll max-h-[72vh] overflow-auto rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
       onScroll={onScroll}
     >
       <table className="table-fixed border-collapse text-left text-sm" style={{ width: tableWidth }}>
-        <thead className="bg-slate-50 text-xs uppercase tracking-normal text-slate-600">
+        <thead className="bg-slate-50 text-xs uppercase tracking-normal text-slate-600 dark:bg-slate-800 dark:text-slate-300">
           <tr>
             {baseColumns.map((column) => (
               <ResizableHeaderCell
@@ -86,7 +86,7 @@ export function MaterialsMatrixTable({ materials, matrix }) {
                 column={column}
                 width={getWidth(column)}
                 onResizeStart={startResize}
-                className="sticky top-0 z-30 bg-slate-50"
+                className="sticky top-0 z-30 bg-slate-50 dark:bg-slate-800"
                 style={{ left: stickyLeft[column.id] }}
                 title={column.label}
               >
@@ -99,7 +99,7 @@ export function MaterialsMatrixTable({ materials, matrix }) {
                 column={columns.find((column) => column.id === material.id)}
                 width={getWidth(columns.find((column) => column.id === material.id))}
                 onResizeStart={startResize}
-                className="sticky top-0 z-20 whitespace-normal bg-slate-50 px-3 text-center align-bottom"
+                className="sticky top-0 z-20 whitespace-normal bg-slate-50 px-3 text-center align-bottom dark:bg-slate-800"
                 title={material.title}
               >
                 {material.title}
@@ -107,21 +107,21 @@ export function MaterialsMatrixTable({ materials, matrix }) {
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-200">
+        <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
           {paddingTop > 0 ? (
             <tr aria-hidden="true">
               <td colSpan={columns.length} style={{ height: paddingTop, padding: 0 }} />
             </tr>
           ) : null}
           {virtualRows.map(({ item: row }) => (
-            <tr key={row.rowId} className="bg-white">
-              <StickyCell column={columns[0]} width={getWidth(columns[0])} left={stickyLeft.fullName} className="font-medium text-slate-900">
+            <tr key={row.rowId} className="bg-white dark:bg-slate-900">
+              <StickyCell column={columns[0]} width={getWidth(columns[0])} left={stickyLeft.fullName} className="font-medium text-slate-900 dark:text-slate-50">
                 {row.fullName}
               </StickyCell>
-              <StickyCell column={columns[1]} width={getWidth(columns[1])} left={stickyLeft.email} className="text-slate-700">
+              <StickyCell column={columns[1]} width={getWidth(columns[1])} left={stickyLeft.email} className="text-slate-700 dark:text-slate-300">
                 {row.email}
               </StickyCell>
-              <StickyCell column={columns[2]} width={getWidth(columns[2])} left={stickyLeft.stream} className="text-slate-700">
+              <StickyCell column={columns[2]} width={getWidth(columns[2])} left={stickyLeft.stream} className="text-slate-700 dark:text-slate-300">
                 {row.stream}
               </StickyCell>
               {materials.map((material) => (
@@ -138,12 +138,12 @@ export function MaterialsMatrixTable({ materials, matrix }) {
               <td colSpan={columns.length} style={{ height: paddingBottom, padding: 0 }} />
             </tr>
           ) : null}
-          <tr className="border-t-2 border-slate-300 bg-slate-100">
-            <StickyCell column={columns[0]} width={getWidth(columns[0])} left={stickyLeft.fullName} className="bg-slate-100 font-semibold text-slate-950">
+          <tr className="border-t-2 border-slate-300 bg-slate-100 dark:border-slate-700 dark:bg-slate-800">
+            <StickyCell column={columns[0]} width={getWidth(columns[0])} left={stickyLeft.fullName} className="bg-slate-100 font-semibold text-slate-950 dark:bg-slate-800 dark:text-slate-50">
               Среднее
             </StickyCell>
-            <StickyCell column={columns[1]} width={getWidth(columns[1])} left={stickyLeft.email} className="bg-slate-100" />
-            <StickyCell column={columns[2]} width={getWidth(columns[2])} left={stickyLeft.stream} className="bg-slate-100" />
+            <StickyCell column={columns[1]} width={getWidth(columns[1])} left={stickyLeft.email} className="bg-slate-100 dark:bg-slate-800" />
+            <StickyCell column={columns[2]} width={getWidth(columns[2])} left={stickyLeft.stream} className="bg-slate-100 dark:bg-slate-800" />
             {materials.map((material) => (
               <ProgressCell
                 key={material.id}
