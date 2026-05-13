@@ -45,7 +45,7 @@ export function ListenersTable({ listeners }) {
   return (
     <div
       ref={containerRef}
-      className="table-scroll max-h-[70vh] overflow-auto rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
+      className="table-scroll h-[80vh] min-h-[640px] overflow-auto rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
       onScroll={onScroll}
     >
       <table className="table-fixed border-collapse text-left text-sm" style={{ width: tableWidth }}>

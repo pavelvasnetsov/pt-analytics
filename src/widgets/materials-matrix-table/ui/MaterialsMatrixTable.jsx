@@ -74,7 +74,7 @@ export function MaterialsMatrixTable({ materials, matrix }) {
   return (
     <div
       ref={containerRef}
-      className="table-scroll max-h-[72vh] overflow-auto rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
+      className="table-scroll h-[82vh] min-h-[680px] overflow-auto rounded-lg border border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900"
       onScroll={onScroll}
     >
       <table className="table-fixed border-collapse text-left text-sm" style={{ width: tableWidth }}>
