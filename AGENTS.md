@@ -56,13 +56,14 @@ Important architectural patterns:
 Before finishing a change, run:
 
 ```bash
+npm run check
 npm test
 npm run build
 ```
 
 Expected result:
 
+- Biome check passes without diagnostics.
 - All Vitest tests pass.
 - Vite production build completes successfully.
 - Existing Vite chunk-size warning caused by `xlsx` is acceptable unless the task specifically targets bundle optimization.
-

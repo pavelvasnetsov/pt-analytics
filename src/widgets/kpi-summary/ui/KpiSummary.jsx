@@ -1,6 +1,6 @@
-import { Card } from '../../../shared/ui/Card/Card.jsx';
 import { formatPercent } from '../../../shared/lib/number/formatPercent.js';
 import { formatDuration } from '../../../shared/lib/time/formatDuration.js';
+import { Card } from '../../../shared/ui/Card/Card.jsx';
 
 const KPI_ITEMS = [
   ['Всего слушателей', 'totalListeners'],

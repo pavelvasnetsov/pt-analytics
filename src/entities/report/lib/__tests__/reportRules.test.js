@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { calculateKpis } from '../calculateKpis.js';
 import { buildMaterialMatrix } from '../buildMaterialMatrix.js';
+import { calculateKpis } from '../calculateKpis.js';
 import { normalizeReport } from '../normalizeReport.js';
 import { validateRequiredColumns } from '../validateRequiredColumns.js';
 
@@ -19,7 +19,9 @@ const headers = [
 describe('report business rules', () => {
   it('validates required columns', () => {
     expect(validateRequiredColumns(headers).valid).toBe(true);
-    expect(validateRequiredColumns(headers.filter((header) => !header.includes('Прогресс прохождения'))).valid).toBe(false);
+    expect(validateRequiredColumns(headers.filter((header) => !header.includes('Прогресс прохождения'))).valid).toBe(
+      false
+    );
   });
 
   it('normalizes report and calculates kpis', () => {

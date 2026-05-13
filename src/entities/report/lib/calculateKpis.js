@@ -1,7 +1,11 @@
 import { SUCCESS_COMPLETION_STATUS } from '../config/statusRules.js';
 
 export function isSuccessfullyCompleted(listener) {
-  return String(listener.completionStatus ?? '').trim().toLowerCase() === SUCCESS_COMPLETION_STATUS;
+  return (
+    String(listener.completionStatus ?? '')
+      .trim()
+      .toLowerCase() === SUCCESS_COMPLETION_STATUS
+  );
 }
 
 export function calculateKpis(listeners) {

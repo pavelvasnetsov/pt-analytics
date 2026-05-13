@@ -20,13 +20,9 @@ export function buildMaterialMatrix(rawRows, listeners, materials) {
   });
 
   const averages = materials.reduce((acc, material) => {
-    const numericValues = rows
-      .map((row) => row.values[material.id])
-      .filter((value) => Number.isFinite(value));
+    const numericValues = rows.map((row) => row.values[material.id]).filter((value) => Number.isFinite(value));
     acc[material.id] =
-      numericValues.length === 0
-        ? null
-        : numericValues.reduce((sum, value) => sum + value, 0) / numericValues.length;
+      numericValues.length === 0 ? null : numericValues.reduce((sum, value) => sum + value, 0) / numericValues.length;
     return acc;
   }, {});
 

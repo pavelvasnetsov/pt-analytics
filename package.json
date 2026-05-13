@@ -7,6 +7,9 @@
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "test": "vitest run",
+    "lint": "biome lint .",
+    "format": "biome format --write .",
+    "check": "biome check .",
     "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {
@@ -17,6 +20,7 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.2.0",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",

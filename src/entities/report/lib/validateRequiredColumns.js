@@ -1,7 +1,9 @@
 import { COLUMN_ALIASES, REQUIRED_FIELDS, REQUIRED_LABELS } from '../config/columnMappings.js';
 
 export function normalizeHeader(header) {
-  return String(header ?? '').replace(/\s+/g, ' ').trim();
+  return String(header ?? '')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 export function buildColumnMap(headers) {

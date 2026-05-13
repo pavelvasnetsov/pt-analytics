@@ -1,12 +1,4 @@
-export function ResizableHeaderCell({
-  children,
-  column,
-  width,
-  onResizeStart,
-  className = '',
-  style,
-  title
-}) {
+export function ResizableHeaderCell({ children, column, width, onResizeStart, className = '', style, title }) {
   return (
     <th
       className={`relative px-4 py-3 ${className}`}

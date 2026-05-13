@@ -33,11 +33,7 @@ export function parseDate(value) {
   const [, day, month, year, hour = '0', minute = '0', second = '0'] = match;
   const date = new Date(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute), Number(second));
 
-  if (
-    date.getFullYear() !== Number(year) ||
-    date.getMonth() !== Number(month) - 1 ||
-    date.getDate() !== Number(day)
-  ) {
+  if (date.getFullYear() !== Number(year) || date.getMonth() !== Number(month) - 1 || date.getDate() !== Number(day)) {
     return { value: null, valid: false, empty: false };
   }
 

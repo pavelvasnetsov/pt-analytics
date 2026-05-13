@@ -77,10 +77,7 @@ export function useResizableColumns(columns, { storageKey } = {}) {
     writeStoredWidths(storageKey, widths);
   }, [storageKey, widths]);
 
-  const getWidth = useCallback(
-    (column) => widths[column.id] ?? column.width,
-    [widths]
-  );
+  const getWidth = useCallback((column) => widths[column.id] ?? column.width, [widths]);
 
   const startResize = useCallback(
     (event, column) => {

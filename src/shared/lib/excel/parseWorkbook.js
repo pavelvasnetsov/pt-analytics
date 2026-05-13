@@ -1,9 +1,9 @@
 import * as XLSX from 'xlsx';
-import { detectSheet } from './detectSheet.js';
 import { extractMaterials } from '../../../entities/material/lib/extractMaterials.js';
-import { normalizeReport } from '../../../entities/report/lib/normalizeReport.js';
-import { calculateKpis } from '../../../entities/report/lib/calculateKpis.js';
 import { buildMaterialMatrix } from '../../../entities/report/lib/buildMaterialMatrix.js';
+import { calculateKpis } from '../../../entities/report/lib/calculateKpis.js';
+import { normalizeReport } from '../../../entities/report/lib/normalizeReport.js';
+import { detectSheet } from './detectSheet.js';
 
 export async function parseWorkbook(file) {
   const buffer = await file.arrayBuffer();

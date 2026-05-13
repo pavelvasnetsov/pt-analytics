@@ -60,6 +60,24 @@ Run unit tests:
 npm test
 ```
 
+Run Biome lint/format checks:
+
+```bash
+npm run check
+```
+
+Run only lint:
+
+```bash
+npm run lint
+```
+
+Format files with Biome:
+
+```bash
+npm run format
+```
+
 Build production bundle:
 
 ```bash
@@ -77,9 +95,9 @@ npm run preview
 For code changes, run:
 
 ```bash
+npm run check
 npm test
 npm run build
 ```
 
-The change is ready when tests pass and the production build completes.
-
+The change is ready when Biome check passes, tests pass, and the production build completes.

@@ -3,7 +3,9 @@ import { CLOSED_STATUS_KEYWORDS } from '../../report/config/statusRules.js';
 const RISK_WINDOW_MS = 30 * 24 * 60 * 60 * 1000;
 
 export function isClosedByStatus(status) {
-  const normalized = String(status ?? '').trim().toLowerCase();
+  const normalized = String(status ?? '')
+    .trim()
+    .toLowerCase();
   if (!normalized) {
     return false;
   }
@@ -17,7 +19,11 @@ export function getListenerRowState(listener, now = new Date()) {
     isClosedByStatus(listener.programStatus);
 
   if (isClosed) {
-    return { type: 'closed', label: 'Закрыт', rowClassName: 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300' };
+    return {
+      type: 'closed',
+      label: 'Закрыт',
+      rowClassName: 'bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300'
+    };
   }
 
   const closeTime = listener.accessCloseDate instanceof Date ? listener.accessCloseDate.getTime() : null;

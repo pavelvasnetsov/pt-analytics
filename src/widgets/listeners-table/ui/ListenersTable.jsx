@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
+import { getListenerRowState } from '../../../entities/listener/lib/getListenerRowState.js';
 import { formatDateTime } from '../../../shared/lib/date/formatDateTime.js';
 import { formatPercent } from '../../../shared/lib/number/formatPercent.js';
-import { Badge } from '../../../shared/ui/Badge/Badge.jsx';
-import { getListenerRowState } from '../../../entities/listener/lib/getListenerRowState.js';
 import { useResizableColumns } from '../../../shared/lib/table/useResizableColumns.js';
 import { useVirtualRows } from '../../../shared/lib/table/useVirtualRows.js';
+import { Badge } from '../../../shared/ui/Badge/Badge.jsx';
 import { ResizableHeaderCell } from '../../../shared/ui/Table/ResizableHeaderCell.jsx';
 
 const columns = [
@@ -19,7 +19,7 @@ const columns = [
   { id: 'status', label: 'Статус', width: 120, minWidth: 100 }
 ];
 
-function DataCell({ column, width, children, className = '' }) {
+function DataCell({ width, children, className = '' }) {
   return (
     <td
       className={`overflow-hidden text-ellipsis whitespace-nowrap px-4 py-3 ${className}`}
@@ -67,7 +67,7 @@ export function ListenersTable({ listeners }) {
         </thead>
         <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
           {paddingTop > 0 ? (
-            <tr aria-hidden="true">
+            <tr>
               <td colSpan={columns.length} style={{ height: paddingTop, padding: 0 }} />
             </tr>
           ) : null}
@@ -75,13 +75,25 @@ export function ListenersTable({ listeners }) {
             const state = getListenerRowState(listener);
             return (
               <tr key={listener.rowId} className={state.rowClassName}>
-                <DataCell column={columns[0]} width={getWidth(columns[0])} className="font-medium text-slate-900 dark:text-slate-50">
+                <DataCell
+                  column={columns[0]}
+                  width={getWidth(columns[0])}
+                  className="font-medium text-slate-900 dark:text-slate-50"
+                >
                   {listener.fullName}
                 </DataCell>
-                <DataCell column={columns[1]} width={getWidth(columns[1])} className="text-slate-700 dark:text-slate-300">
+                <DataCell
+                  column={columns[1]}
+                  width={getWidth(columns[1])}
+                  className="text-slate-700 dark:text-slate-300"
+                >
                   {listener.email}
                 </DataCell>
-                <DataCell column={columns[2]} width={getWidth(columns[2])} className="text-slate-700 dark:text-slate-300">
+                <DataCell
+                  column={columns[2]}
+                  width={getWidth(columns[2])}
+                  className="text-slate-700 dark:text-slate-300"
+                >
                   {listener.stream}
                 </DataCell>
                 <DataCell column={columns[3]} width={getWidth(columns[3])} className="text-right font-medium">
@@ -108,7 +120,7 @@ export function ListenersTable({ listeners }) {
             );
           })}
           {paddingBottom > 0 ? (
-            <tr aria-hidden="true">
+            <tr>
               <td colSpan={columns.length} style={{ height: paddingBottom, padding: 0 }} />
             </tr>
           ) : null}

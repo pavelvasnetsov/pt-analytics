@@ -38,46 +38,46 @@ input {
 
 /* Fallback for already running Vite/Tailwind processes that did not reload darkMode config. */
 .dark .bg-white {
-  background-color: #0f172a !important;
+  background-color: #0f172a;
 }
 
 .dark .bg-slate-50,
 .dark .bg-slate-100 {
-  background-color: #1e293b !important;
+  background-color: #1e293b;
 }
 
 .dark .bg-red-50 {
-  background-color: rgb(69 10 10 / 0.5) !important;
+  background-color: rgb(69 10 10 / 0.5);
 }
 
 .dark .bg-amber-50 {
-  background-color: #451a03 !important;
+  background-color: #451a03;
 }
 
 .dark .bg-sky-50 {
-  background-color: #082f49 !important;
+  background-color: #082f49;
 }
 
 .dark .text-slate-950,
 .dark .text-slate-900,
 .dark .text-slate-800 {
-  color: #f8fafc !important;
+  color: #f8fafc;
 }
 
 .dark .text-slate-700,
 .dark .text-slate-600 {
-  color: #cbd5e1 !important;
+  color: #cbd5e1;
 }
 
 .dark .text-slate-500 {
-  color: #94a3b8 !important;
+  color: #94a3b8;
 }
 
 .dark .border-slate-200,
 .dark .border-slate-300 {
-  border-color: #334155 !important;
+  border-color: #334155;
 }
 
 .dark .divide-slate-200 > :not([hidden]) ~ :not([hidden]) {
-  border-color: #1e293b !important;
+  border-color: #1e293b;
 }

@@ -13,8 +13,8 @@ export function Alert({ title, items = [], variant = 'info' }) {
     <section className={`rounded-lg border p-4 ${variants[variant]}`} aria-live="polite">
       <h2 className="text-sm font-semibold">{title}</h2>
       <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
-        {items.slice(0, 12).map((item, index) => (
-          <li key={`${item}-${index}`}>{item}</li>
+        {items.slice(0, 12).map((item) => (
+          <li key={item}>{item}</li>
         ))}
       </ul>
       {items.length > 12 ? <p className="mt-2 text-sm">Еще предупреждений: {items.length - 12}</p> : null}

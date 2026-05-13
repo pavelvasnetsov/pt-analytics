@@ -1,7 +1,7 @@
+import { ReplaceReportButton } from '../../../features/replace-report/ui/ReplaceReportButton.jsx';
+import { UploadDropzone } from '../../../features/upload-report/ui/UploadDropzone.jsx';
 import { formatDateTime } from '../../../shared/lib/date/formatDateTime.js';
 import { Card } from '../../../shared/ui/Card/Card.jsx';
-import { UploadDropzone } from '../../../features/upload-report/ui/UploadDropzone.jsx';
-import { ReplaceReportButton } from '../../../features/replace-report/ui/ReplaceReportButton.jsx';
 
 export function ReportUploadPanel({ report, isParsing, onFile }) {
   if (!report) {

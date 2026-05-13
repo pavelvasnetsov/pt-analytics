@@ -9,7 +9,7 @@ const baseColumns = [
   { id: 'stream', label: 'Поток', width: 230, minWidth: 160, sticky: true }
 ];
 
-function StickyCell({ column, width, left, children, header = false, className = '' }) {
+function StickyCell({ width, left, children, header = false, className = '' }) {
   const Tag = header ? 'th' : 'td';
   return (
     <Tag
@@ -109,19 +109,34 @@ export function MaterialsMatrixTable({ materials, matrix }) {
         </thead>
         <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
           {paddingTop > 0 ? (
-            <tr aria-hidden="true">
+            <tr>
               <td colSpan={columns.length} style={{ height: paddingTop, padding: 0 }} />
             </tr>
           ) : null}
           {virtualRows.map(({ item: row }) => (
             <tr key={row.rowId} className="bg-white dark:bg-slate-900">
-              <StickyCell column={columns[0]} width={getWidth(columns[0])} left={stickyLeft.fullName} className="font-medium text-slate-900 dark:text-slate-50">
+              <StickyCell
+                column={columns[0]}
+                width={getWidth(columns[0])}
+                left={stickyLeft.fullName}
+                className="font-medium text-slate-900 dark:text-slate-50"
+              >
                 {row.fullName}
               </StickyCell>
-              <StickyCell column={columns[1]} width={getWidth(columns[1])} left={stickyLeft.email} className="text-slate-700 dark:text-slate-300">
+              <StickyCell
+                column={columns[1]}
+                width={getWidth(columns[1])}
+                left={stickyLeft.email}
+                className="text-slate-700 dark:text-slate-300"
+              >
                 {row.email}
               </StickyCell>
-              <StickyCell column={columns[2]} width={getWidth(columns[2])} left={stickyLeft.stream} className="text-slate-700 dark:text-slate-300">
+              <StickyCell
+                column={columns[2]}
+                width={getWidth(columns[2])}
+                left={stickyLeft.stream}
+                className="text-slate-700 dark:text-slate-300"
+              >
                 {row.stream}
               </StickyCell>
               {materials.map((material) => (
@@ -134,16 +149,31 @@ export function MaterialsMatrixTable({ materials, matrix }) {
             </tr>
           ))}
           {paddingBottom > 0 ? (
-            <tr aria-hidden="true">
+            <tr>
               <td colSpan={columns.length} style={{ height: paddingBottom, padding: 0 }} />
             </tr>
           ) : null}
           <tr className="sticky bottom-0 z-20 border-t-2 border-slate-300 bg-slate-100 shadow-[0_-1px_0_0_rgba(148,163,184,0.45)] dark:border-slate-700 dark:bg-slate-800">
-            <StickyCell column={columns[0]} width={getWidth(columns[0])} left={stickyLeft.fullName} className="z-30 bg-slate-100 font-semibold text-slate-950 dark:bg-slate-800 dark:text-slate-50">
+            <StickyCell
+              column={columns[0]}
+              width={getWidth(columns[0])}
+              left={stickyLeft.fullName}
+              className="z-30 bg-slate-100 font-semibold text-slate-950 dark:bg-slate-800 dark:text-slate-50"
+            >
               Среднее
             </StickyCell>
-            <StickyCell column={columns[1]} width={getWidth(columns[1])} left={stickyLeft.email} className="z-30 bg-slate-100 dark:bg-slate-800" />
-            <StickyCell column={columns[2]} width={getWidth(columns[2])} left={stickyLeft.stream} className="z-30 bg-slate-100 dark:bg-slate-800" />
+            <StickyCell
+              column={columns[1]}
+              width={getWidth(columns[1])}
+              left={stickyLeft.email}
+              className="z-30 bg-slate-100 dark:bg-slate-800"
+            />
+            <StickyCell
+              column={columns[2]}
+              width={getWidth(columns[2])}
+              left={stickyLeft.stream}
+              className="z-30 bg-slate-100 dark:bg-slate-800"
+            />
             {materials.map((material) => (
               <ProgressCell
                 key={material.id}

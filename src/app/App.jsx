@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { ReportUploadPanel } from '../widgets/report-upload-panel/ui/ReportUploadPanel.jsx';
+import { useUploadReport } from '../features/upload-report/model/useUploadReport.js';
 import { ListenersPage } from '../pages/listeners/ui/ListenersPage.jsx';
 import { MaterialsMatrixPage } from '../pages/materials-matrix/ui/MaterialsMatrixPage.jsx';
-import { useUploadReport } from '../features/upload-report/model/useUploadReport.js';
 import { Alert } from '../shared/ui/Alert/Alert.jsx';
 import { ThemeToggle } from '../shared/ui/ThemeToggle/ThemeToggle.jsx';
+import { ReportUploadPanel } from '../widgets/report-upload-panel/ui/ReportUploadPanel.jsx';
 import { useTheme } from './useTheme.js';
 
 const tabs = [
@@ -27,7 +27,9 @@ export function App() {
       <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
         <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex flex-col gap-2">
-            <p className="text-sm font-semibold uppercase tracking-normal text-sky-700 dark:text-sky-300">Excel analytics</p>
+            <p className="text-sm font-semibold uppercase tracking-normal text-sky-700 dark:text-sky-300">
+              Excel analytics
+            </p>
             <h1 className="text-3xl font-semibold text-slate-950 dark:text-slate-50">Дашборд слушателей</h1>
             <p className="max-w-3xl text-sm text-slate-600 dark:text-slate-300">
               Загрузите еженедельный Excel-отчет, чтобы увидеть KPI, список слушателей и прогресс по материалам.
