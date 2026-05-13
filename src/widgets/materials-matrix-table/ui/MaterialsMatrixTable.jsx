@@ -51,7 +51,7 @@ export function MaterialsMatrixTable({ materials, matrix }) {
       maxWidth: 320
     }))
   ];
-  const { getWidth, startResize } = useResizableColumns(columns);
+  const { getWidth, startResize } = useResizableColumns(columns, { storageKey: 'materials-matrix' });
   const { containerRef, onScroll, virtualRows, paddingTop, paddingBottom } = useVirtualRows(matrix.rows, {
     rowHeight: 48,
     overscan: 8

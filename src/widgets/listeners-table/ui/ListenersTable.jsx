@@ -35,7 +35,7 @@ export function ListenersTable({ listeners }) {
     () => [...listeners].sort((a, b) => b.progress - a.progress || a.sourceRowIndex - b.sourceRowIndex),
     [listeners]
   );
-  const { getWidth, startResize } = useResizableColumns(columns);
+  const { getWidth, startResize } = useResizableColumns(columns, { storageKey: 'listeners' });
   const { containerRef, onScroll, virtualRows, paddingTop, paddingBottom } = useVirtualRows(sortedListeners, {
     rowHeight: 48,
     overscan: 10

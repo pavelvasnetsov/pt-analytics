@@ -1,22 +1,81 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 const MIN_WIDTH = 88;
 const MAX_WIDTH = 520;
+const STORAGE_PREFIX = 'pt-analytics-column-widths';
 
 function clampWidth(width, minWidth = MIN_WIDTH, maxWidth = MAX_WIDTH) {
   return Math.min(maxWidth, Math.max(minWidth, Math.round(width)));
 }
 
-export function useResizableColumns(columns) {
-  const initialWidths = useMemo(
-    () =>
-      columns.reduce((acc, column) => {
-        acc[column.id] = column.width;
+function getDefaultWidths(columns) {
+  return columns.reduce((acc, column) => {
+    acc[column.id] = column.width;
+    return acc;
+  }, {});
+}
+
+function getStorageKey(storageKey) {
+  return storageKey ? `${STORAGE_PREFIX}:${storageKey}` : null;
+}
+
+function readStoredWidths(storageKey, columns) {
+  const key = getStorageKey(storageKey);
+  if (!key || typeof window === 'undefined') {
+    return {};
+  }
+
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(key) ?? '{}');
+    if (!parsed || typeof parsed !== 'object') {
+      return {};
+    }
+
+    return columns.reduce((acc, column) => {
+      const value = Number(parsed[column.id]);
+      if (Number.isFinite(value)) {
+        acc[column.id] = clampWidth(value, column.minWidth, column.maxWidth);
+      }
+      return acc;
+    }, {});
+  } catch {
+    return {};
+  }
+}
+
+function writeStoredWidths(storageKey, widths) {
+  const key = getStorageKey(storageKey);
+  if (!key || typeof window === 'undefined') {
+    return;
+  }
+
+  try {
+    window.localStorage.setItem(key, JSON.stringify(widths));
+  } catch {
+    // Persisting column widths is optional.
+  }
+}
+
+export function useResizableColumns(columns, { storageKey } = {}) {
+  const defaultWidths = useMemo(() => getDefaultWidths(columns), [columns]);
+  const [widths, setWidths] = useState(() => ({
+    ...defaultWidths,
+    ...readStoredWidths(storageKey, columns)
+  }));
+
+  useEffect(() => {
+    setWidths((current) => {
+      const stored = readStoredWidths(storageKey, columns);
+      return columns.reduce((acc, column) => {
+        acc[column.id] = stored[column.id] ?? current[column.id] ?? column.width;
         return acc;
-      }, {}),
-    [columns]
-  );
-  const [widths, setWidths] = useState(initialWidths);
+      }, {});
+    });
+  }, [columns, storageKey]);
+
+  useEffect(() => {
+    writeStoredWidths(storageKey, widths);
+  }, [storageKey, widths]);
 
   const getWidth = useCallback(
     (column) => widths[column.id] ?? column.width,
